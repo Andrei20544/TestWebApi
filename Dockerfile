@@ -7,7 +7,7 @@ RUN dotnet publish "C:\Users\dronm\source\repos\TestWebApi\TestWebApi\TestWebApi
 
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
 WORKDIR /app
-COPY --from=publish /app/publish .
+COPY --from=publish /app/publish ./
 
 EXPOSE 5000
 

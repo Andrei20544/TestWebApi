@@ -8,7 +8,7 @@ WORKDIR /source
 COPY . .
 WORKDIR /source
 #WORKDIR "/src/TestWebApi"
-#RUN ["dotnet", "dev-certs", "https"]
+RUN ["dotnet", "dev-certs", "https"]
 
 #RUN dotnet restore "C:\Users\dronm\source\repos\TestWebApi\TestWebApi\TestWebApi.csproj" --disable-parallel
 RUN dotnet publish -c release -o /app

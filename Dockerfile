@@ -1,17 +1,21 @@
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /source
-COPY . .
-WORKDIR "/src/TestWebApi"
-RUN ["dotnet", "dev-certs", "https"]
 
-FROM build AS publish
+COPY *.sln .
+COPY *.csproj ./
+RUN dotnet restore
+
+COPY . .
+WORKDIR /source
+#WORKDIR "/src/TestWebApi"
+#RUN ["dotnet", "dev-certs", "https"]
 
 #RUN dotnet restore "C:\Users\dronm\source\repos\TestWebApi\TestWebApi\TestWebApi.csproj" --disable-parallel
-RUN dotnet publish "C:\Users\dronm\source\repos\TestWebApi\TestWebApi\TestWebApi.csproj" -c --no-cache -o /app/publish
+RUN dotnet publish -c release -o /app --no-restore
 
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
 WORKDIR /app
-COPY --from=publish /app/publish ./
+COPY --from=build /app ./
 
 EXPOSE 5000
 

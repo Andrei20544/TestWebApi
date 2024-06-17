@@ -3,7 +3,7 @@ WORKDIR /source
 COPY . .
 RUN ["dotnet", "dev-certs", "https"]
 #RUN dotnet restore "C:\Users\dronm\source\repos\TestWebApi\TestWebApi\TestWebApi.csproj" --disable-parallel
-RUN dotnet publish "C:\Users\dronm\source\repos\TestWebApi\TestWebApi\TestWebApi.csproj" --no-cache -o /app -c
+RUN dotnet publish "C:\Users\dronm\source\repos\TestWebApi\TestWebApi\TestWebApi.csproj" -c --no-cache -o /app
 
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
 WORKDIR /app

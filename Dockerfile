@@ -17,6 +17,6 @@ FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
 WORKDIR /app
 COPY --from=build /app ./
 
-EXPOSE 80
+EXPOSE 5000
 
 ENTRYPOINT ["dotnet", "TestWebApi.dll"]
